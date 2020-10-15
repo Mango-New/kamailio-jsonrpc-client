@@ -29,9 +29,9 @@ func ListenAndServe(root *goji.Mux, listenAddr string, client client.API) error 
 	root.Handle(pat.New(requestPath), v)
 	// POST /v1/uac/register returns 200
 	v.HandleFunc(pat.Post("/uac/register"), h.register)
-	// GET /v1/uac/unregister?domain=test.com&username=1000  returns 200
+	// POST /v1/uac/unregister?domain=test.com&username=1000  returns 200
 	v.HandleFunc(pat.Post("/uac/unregister"), h.unregister)
-	// GET /v1/uac/list?domain=test.com&username=1000 returns 200
+	// POST /v1/uac/list?domain=test.com&username=1000 returns 200
 	v.HandleFunc(pat.Post("/uac/list"), h.list)
 	return http.ListenAndServe(listenAddr, root)
 }
